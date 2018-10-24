@@ -1,16 +1,21 @@
 //****************************************************************************************************//
-HEADER FILES USED IN PROJECT
+//HEADER FILES USED IN PROJECT
 //****************************************************************************************************//
 
 #include<fstream>
-// #include<conio.h>
+#include "conio.h"
 #include<stdio.h>
-#include<process.h>
+//#include<process.h>
+//tried using stdlib.h instead of process.h :suraj
+//#include<stdlib.h>
 #include<string.h>
-#include<iomanip.h>
+#include<iomanip>
+#include<iostream>
+
+using namespace std;
 
 //****************************************************************************************************//
-CLASSES USED IN PROJECT
+//CLASSES USED IN PROJECT
 //****************************************************************************************************//
 
 class book
@@ -76,7 +81,7 @@ class student
 		cout<<"\n\nEnter The Name of the student";
 		gets(name);
 		token=0;
-		stbno[0]='/0';
+		stbno[0]='\0';
 		cout<<"\n\nStudent Record Created..";
 	 }
       void show_student()
@@ -232,7 +237,7 @@ void modify_book()
 		if(strcmpi(bk.retbno(),n)==0)
 		 {
 			bk.show_book();
-cout<<"\nEnter The New Details of book”;   cout<<endl;
+cout<<"\nEnter The New Details of book";   cout<<endl;
 			bk.modify_book();
 			int pos=-1*sizeof(bk);
 			fp.seekp(pos,ios::cur);
@@ -293,7 +298,7 @@ void delete_student()
 	int flag=0;	
 	clrscr();
 	cout<<"\n\n\n\tDELETE STUDENT...";
-cout<<"\n\nEnter The admission no. of the Student you”;
+cout<<"\n\nEnter The admission no. of the Student you";
 cout<<"want To Delete : ";
 	cin>>n;
 	fp.open("student.dat",ios::in|ios::out);
@@ -330,7 +335,7 @@ void delete_book()
 	char n[6];
 	clrscr();
 	cout<<"\n\n\n\tDELETE BOOK ...";
-cout<<"\n\nEnter The Book no. of the Book You Want To “;        cout<<"Delete: ";
+cout<<"\n\nEnter The Book no. of the Book You Want To ";        cout<<"Delete: ";
 	cin>>n;
 	fp.open("book.dat",ios::in|ios::out);
 	fstream fp2;
@@ -452,8 +457,8 @@ void book_issue()
 	     }
 	    else
 	    {
-		  cout<<"You have not returned the last book.”;
-	        cout<<" Book can be issued only after returning the”;  
+		  cout<<"You have not returned the last book.";
+	        cout<<" Book can be issued only after returning the";  
         cout<<"previous one.";         
     }
        }
@@ -626,7 +631,7 @@ void main()
 		cout<<"\n\n\n\t MAIN MENU";
 		cout<<"\n\n\t01. ADMINISTRATOR MENU";
 		cout<<"\n\n\t02. BOOK ISSUE";
-		cout<<"\n\n\t03. BOOK DEPOSIT;
+		cout<<"\n\n\t03. BOOK DEPOSIT";
 		cout<<"\n\n\t04. EXIT";
 		cout<<"\n\n\tPlease Select Your Option (1-4): ";
 		ch=getche();
