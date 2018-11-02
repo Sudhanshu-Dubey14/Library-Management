@@ -30,9 +30,9 @@ class book
 		cout<<"\nEnter The book no.";
 		cin>>bno;
 		cout<<"\n\nEnter The Name of The Book ";
-		gets(bname);
+		cin>>bname;
 		cout<<"\n\nEnter The Author's Name ";
-		gets(aname);
+		cin>>aname;
 		cout<<"\n\n\nBook Created..";
 	 }
 	void show_book()
@@ -49,9 +49,9 @@ class book
 	 {
 	 	cout<<"\nBook no. : "<<bno;
 		cout<<"\nModify Book Name : ";
-		gets(bname);
+		cin>>bname;
 		cout<<"\nModify Author's Name of Book:";
-		gets(aname);
+		cin>>aname;
 	 }
       char* retbno()
 	 {
@@ -78,7 +78,7 @@ class student
 		cout<<"\nEnter The admission no. ";
 		cin>>admno;
 		cout<<"\n\nEnter The Name of the student";
-		gets(name);
+		cin>>name;
 		token=0;
 		stbno[0]='\0';
 		cout<<"\n\nStudent Record Created..";
@@ -99,7 +99,7 @@ class student
 	 {
 	 	cout<<"\nAdmission no. : "<<admno;
 		cout<<"\nModify Student Name : ";
-		gets(name);
+		cin>>name;
 	 }
       char* retadmno()
 	 {
@@ -183,7 +183,7 @@ void display_spb(char n[])
 	fp.open("book.dat",ios::in);
 	while(fp.read((char*)&bk,sizeof(book)))
 	 {
-		if(strcmpi(bk.retbno(),n)==0)
+		if(strcmp(bk.retbno(),n)==0)
 		 {
 			bk.show_book();
 			flag=1;
@@ -194,7 +194,7 @@ void display_spb(char n[])
 	 {
 		cout<<"\n\nBook does not exist";
 	 }
-	getch();
+	cin.get();
  }
 void display_sps(char n[])
  {
@@ -203,7 +203,7 @@ void display_sps(char n[])
 	fp.open("student.dat",ios::in);
 	while(fp.read((char*)&st,sizeof(student)))
 	 {
-		if((strcmpi(st.retadmno(),n)==0))
+		if((strcmp(st.retadmno(),n)==0))
 		 {
 			st.show_student();
 			flag=1;
@@ -214,7 +214,7 @@ void display_sps(char n[])
 	 {
 		cout<<"\n\nStudent does not exist";
 	 }
-	getch();
+	cin.get();
  }
 
 //*****************************************************//
@@ -231,7 +231,7 @@ void modify_book()
 	fp.open("book.dat",ios::in|ios::out);
 	while(fp.read((char*)&bk,sizeof(book)) && found==0)
 	 {
-		if(strcmpi(bk.retbno(),n)==0)
+		if(strcmp(bk.retbno(),n)==0)
 		 {
 			bk.show_book();
 cout<<"\nEnter The New Details of book";   cout<<endl;
@@ -248,7 +248,7 @@ cout<<"\nEnter The New Details of book";   cout<<endl;
 	 {
 		cout<<"\n\n Record Not Found ";
 	 }
-	getch();
+	cin.get();
  }
 
 void modify_student()
@@ -261,7 +261,7 @@ void modify_student()
 	fp.open("student.dat",ios::in|ios::out);
 	while(fp.read((char*)&st,sizeof(student)) && found==0)
 	 {
-		if(strcmpi(st.retadmno(),n)==0)
+		if(strcmp(st.retadmno(),n)==0)
 		 {
 			st.show_student();
 		      cout<<"\nEnter The New Details of  student";
@@ -279,7 +279,7 @@ void modify_student()
 	 {
 		cout<<"\n\n Record Not Found ";
 	 }
-	getch();
+	cin.get();
  }
 
 
@@ -302,7 +302,7 @@ cout<<"want To Delete : ";
 	fp.seekg(0,ios::beg);
 	while(fp.read((char*)&st,sizeof(student)))
 	 {
-		if(strcmpi(st.retadmno(),n)!=0)
+		if(strcmp(st.retadmno(),n)!=0)
 		 {
 			fp2.write((char*)&st,sizeof(student));
 		 }
@@ -323,7 +323,7 @@ cout<<"want To Delete : ";
 	 {
 		cout<<"\n\nRecord not found";
 	 }
-	getch();
+	cin.get();
  }
 void delete_book()
  {
@@ -338,7 +338,7 @@ cout<<"\n\nEnter The Book no. of the Book You Want To ";        cout<<"Delete: "
 	fp.seekg(0,ios::beg);
 	while(fp.read((char*)& bk,sizeof(book)))
 	 {
-		if(strcmpi(bk.retbno(),n)!= 0)
+		if(strcmp(bk.retbno(),n)!= 0)
 		 {
 			fp2.write((char*)&bk,sizeof(book));
 	 	 }
@@ -348,7 +348,7 @@ cout<<"\n\nEnter The Book no. of the Book You Want To ";        cout<<"Delete: "
 	remove("book.dat");
 	rename("Temp.dat","book.dat");
 	cout<<"\n\n\tRecord Deleted ..";
-	getch();
+	cin.get();
  }
 //********************************************************//
 //FUNCTION TO DISPLAY ALL STUDENTS LIST
@@ -361,7 +361,7 @@ void display_alls()
 	if(!fp)
 	 {
 		cout<<"ERROR!!! FILE COULD NOT BE OPEN ";
-		getch();
+		cin.get();
 		return;
 	 }
       cout<<"\n\n\t\tSTUDENT LIST\n\n";
@@ -374,7 +374,7 @@ cout<<"##############################################\n";
 		st.report();
 	}
 	fp.close();
-	getch();
+	cin.get();
 }
 //**********************************************************//
 //FUNCTION TO DISPLAY BOOKS LIST
@@ -387,7 +387,7 @@ void display_allb()
 	if(!fp)
 	 {
 		cout<<"ERROR!!! FILE COULD NOT BE OPEN ";
-		getch();
+		cin.get();
 		return;
 	 }
 	cout<<"\n\n\t\tBook LIST\n\n";
@@ -400,7 +400,7 @@ void display_allb()
 		bk.report();
 	 }
 	fp.close();
-	getch();
+	cin.get();
  }
 
 
@@ -421,7 +421,7 @@ void book_issue()
 	fp1.open("book.dat",ios::in|ios::out);
 	while(fp.read((char*)&st,sizeof(student))&& found==0)
 	 {
-	   if(strcmpi(st.retadmno(),sn)==0)
+	   if(strcmp(st.retadmno(),sn)==0)
 	    {
 	      found=1;
 	      if(st.rettoken()==0)
@@ -430,7 +430,7 @@ void book_issue()
 		   cin>>bn;
 		   while(fp1.read((char*)&bk,sizeof(book))&& flag==0)
 		    {
-			    if(strcmpi(bk.retbno(),bn)==0)
+			    if(strcmp(bk.retbno(),bn)==0)
 			     {
 			        bk.show_book();
 			        flag=1;
@@ -459,7 +459,7 @@ void book_issue()
        }
      if(found==0)
       {    cout<<"Student record not exist...";   }
-     getch();
+     cin.get();
      fp.close();
      fp1.close();
  }}
@@ -479,14 +479,14 @@ void book_deposit()
 	fp1.open("book.dat",ios::in|ios::out);
 	while(fp.read((char*)&st,sizeof(student)) && found==0)
 	 {
-	  if(strcmpi(st.retadmno(),sn)==0)
+	  if(strcmp(st.retadmno(),sn)==0)
 	   {
 	   found=1;
 	   if(st.rettoken()==1)
 	    {
 		while(fp1.read((char*)&bk,sizeof(book))&& flag==0)
 	      {
-		   if(strcmpi(bk.retbno(),st.retstbno())==0)
+		   if(strcmp(bk.retbno(),st.retstbno())==0)
 		    {
 			bk.show_book();
 			flag=1;
@@ -518,7 +518,7 @@ void book_deposit()
       }
      if(found==0)
       cout<<"Student record not exist...";
-     getch();
+     cin.get();
      fp.close();
      fp1.close();
    }
@@ -539,7 +539,7 @@ void intro()
 	cout<<"LIBRARY MANAGEMENT SYSTEM";
 	cout<<"\n\nMADE BY : $udhanshu Dubey";
 	cout<<"\n\nSCHOOL : KENDRIYA VIDYALAYA No.2 AFS HALWARA";
-	getch();
+	cin.get();
  }
 
 //***************************************************************//
@@ -630,7 +630,7 @@ int main()
 		cout<<"\n\n\t03. BOOK DEPOSIT";
 		cout<<"\n\n\t04. EXIT";
 		cout<<"\n\n\tPlease Select Your Option (1-4): ";
-		ch=getche();
+		cin>>ch;
 		switch(ch)
 		 {
 			case '1':   //clrscr();
